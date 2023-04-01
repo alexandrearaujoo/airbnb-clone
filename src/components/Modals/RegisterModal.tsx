@@ -1,7 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
@@ -14,7 +13,7 @@ import Modal from './Modal';
 import { useRegisterModal } from '@/hooks/useRegisterModal';
 import { RegisterProps, registerSchema } from '@/schemas/register';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -22,6 +21,7 @@ const RegisterModal = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting }
   } = useForm<RegisterProps>({
     resolver: zodResolver(registerSchema),
@@ -32,8 +32,11 @@ const RegisterModal = () => {
     try {
       await axios.post('/api/register', data);
       registerModal.onClose();
+      reset();
     } catch (error) {
-      toast.error('Something went wrong');
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data);
+      }
     }
   };
 
