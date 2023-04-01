@@ -1,6 +1,7 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
+import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
@@ -11,6 +12,7 @@ import Heading from '../Heading';
 import { Input } from '../Inputs/Input';
 import Modal from './Modal';
 
+import { useLoginModal } from '@/hooks/useLoginModal';
 import { useRegisterModal } from '@/hooks/useRegisterModal';
 import { RegisterProps, registerSchema } from '@/schemas/register';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,6 +20,7 @@ import axios, { AxiosError } from 'axios';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
 
   const {
     register,
@@ -40,6 +43,11 @@ const RegisterModal = () => {
       }
     }
   };
+
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -89,9 +97,9 @@ const RegisterModal = () => {
       />
       <div className=" text-neutral-500 mt-4 font-light">
         <div className="flex items-center justify-center gap-2">
-          <p className="">Already have an account</p>
+          <p className="">Already have an account ?</p>
           <p
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
             Log in

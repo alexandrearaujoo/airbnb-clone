@@ -9,6 +9,7 @@ import MenuItem from './MenuItem';
 
 import { useLoginModal } from '@/hooks/useLoginModal';
 import { useRegisterModal } from '@/hooks/useRegisterModal';
+import { useRentModal } from '@/hooks/useRentModal';
 import { SafeUser } from '@/types';
 
 interface UserMenuProps {
@@ -19,18 +20,25 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
 
   const toggleOpen = useCallback(() => {
     setIsOpen(!isOpen);
   }, [isOpen]);
 
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    rentModal.onOpen();
+  }, [loginModal, rentModal, currentUser]);
+
   return (
     <div className="relative ">
       <div className="flex items-center gap-3">
         <button
-          onClick={() => {
-            console.log('oi');
-          }}
+          onClick={onRent}
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition"
         >
           Airbnb your home
@@ -60,10 +68,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                   label="My properties"
                   onClick={registerModal.onOpen}
                 />
-                <MenuItem
-                  label="Airbnb my home"
-                  onClick={registerModal.onOpen}
-                />
+                <MenuItem label="Airbnb my home" onClick={rentModal.onOpen} />
                 <hr />
                 <MenuItem label="Logout" onClick={() => signOut()} />
               </>

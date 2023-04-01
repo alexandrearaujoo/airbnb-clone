@@ -2,6 +2,7 @@
 
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
@@ -13,11 +14,13 @@ import { Input } from '../Inputs/Input';
 import Modal from './Modal';
 
 import { useLoginModal } from '@/hooks/useLoginModal';
+import { useRegisterModal } from '@/hooks/useRegisterModal';
 import { LoginProps, loginSchema } from '@/schemas/login';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const router = useRouter();
 
   const {
@@ -44,6 +47,11 @@ const LoginModal = () => {
       }
     );
   };
+
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -85,12 +93,12 @@ const LoginModal = () => {
       />
       <div className=" text-neutral-500 mt-4 font-light">
         <div className="flex items-center justify-center gap-2">
-          <p className="">Already have an account</p>
+          <p className="">First time using airbnb ?</p>
           <p
-            onClick={loginModal.onClose}
+            onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
-            Log in
+            Create an account
           </p>
         </div>
       </div>
