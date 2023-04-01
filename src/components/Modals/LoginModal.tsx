@@ -13,7 +13,7 @@ import { Input } from '../Inputs/Input';
 import Modal from './Modal';
 
 import { useLoginModal } from '@/hooks/useLoginModal';
-import { LoginProps, LoginSchema } from '@/schemas/login';
+import { LoginProps, loginSchema } from '@/schemas/login';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const LoginModal = () => {
@@ -25,7 +25,7 @@ const LoginModal = () => {
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<LoginProps>({
-    resolver: zodResolver(LoginSchema),
+    resolver: zodResolver(loginSchema),
     mode: 'all'
   });
 
