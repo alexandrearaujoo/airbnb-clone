@@ -4,7 +4,13 @@ export type RentProps = z.infer<typeof rentSchema>;
 
 export const rentSchema = z.object({
   category: z.string({ required_error: 'This field is required' }),
-  location: z.object({}),
+  location: z.object({
+    flag: z.string(),
+    label: z.string(),
+    latlng: z.array(z.number()),
+    region: z.string(),
+    value: z.string()
+  }),
   guestCount: z
     .number()
     .positive('This number is invalid')
