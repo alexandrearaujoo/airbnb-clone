@@ -1,5 +1,6 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
@@ -78,13 +79,13 @@ const RegisterModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => console.log('oi')}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
         label="Continue with GitHub"
         icon={AiFillGithub}
-        onClick={() => console.log('oi')}
+        onClick={() => signIn('github')}
       />
       <div className=" text-neutral-500 mt-4 font-light">
         <div className="flex items-center justify-center gap-2">

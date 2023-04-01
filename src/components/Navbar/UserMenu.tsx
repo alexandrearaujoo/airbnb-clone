@@ -9,10 +9,10 @@ import MenuItem from './MenuItem';
 
 import { useLoginModal } from '@/hooks/useLoginModal';
 import { useRegisterModal } from '@/hooks/useRegisterModal';
-import { User } from '@prisma/client';
+import { SafeUser } from '@/types';
 
 interface UserMenuProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const UserMenu = ({ currentUser }: UserMenuProps) => {
@@ -41,7 +41,13 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar
+              src={
+                currentUser?.image
+                  ? currentUser.image
+                  : '/images/placeholder.jpg'
+              }
+            />
           </div>
         </button>
       </div>
