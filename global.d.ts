@@ -5,3 +5,7 @@ declare global {
     var prismadb: PrismaClient;
   }
 }
+
+declare global {
+  var cloudinary: any;
+}

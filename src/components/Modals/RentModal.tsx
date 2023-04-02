@@ -8,6 +8,7 @@ import Heading from '../Heading';
 import CategoryInput from '../Inputs/CategoryInput';
 import Counter from '../Inputs/Counter';
 import CountrySelect from '../Inputs/CountrySelect';
+import ImageUpload from '../Inputs/ImageUpload';
 import Modal from './Modal';
 
 import { categories } from '@/data/categories';
@@ -50,6 +51,7 @@ const RentModal = () => {
   const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
 
   const Map = useMemo(
     () => dynamic(() => import('../Map'), { ssr: false }),
@@ -151,6 +153,21 @@ const RentModal = () => {
           subtitile="How many bathrooms do you have ?"
           value={bathroomCount}
           onChange={(value) => setCustomValue('bathroomCount', value)}
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.IMAGES) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Add photo of your place"
+          subtitle="Show guests what your place looks like!"
+        />
+        <ImageUpload
+          onChange={(value) => setCustomValue('imageSrc', value)}
+          value={imageSrc}
         />
       </div>
     );
