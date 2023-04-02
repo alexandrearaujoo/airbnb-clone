@@ -62,7 +62,7 @@ const ListingClient = ({
     try {
       setIsLoading(true);
 
-      await axios.post('/api/reservation', {
+      await axios.post('/api/reservations', {
         totalPrice,
         startDate: dateRange.startDate,
         endDate: dateRange.endDate,
