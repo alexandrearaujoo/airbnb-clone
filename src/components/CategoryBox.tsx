@@ -23,9 +23,9 @@ const CategoryBox = ({ icon: Icon, label, selected }: CategoryBoxProps) => {
       currentQuery = qs.parse(params.toString());
     }
 
-    const updatedQuery: any = {
+    const updatedQuery = {
       ...currentQuery,
-      category: label
+      category: label || undefined
     };
 
     if (params?.get('category') === label) {

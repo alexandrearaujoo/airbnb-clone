@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import prismaClient from '@/libs/prismadb';
-import bcrypt from 'bcrypt';
 
 export async function POST(req: Request) {
   try {
