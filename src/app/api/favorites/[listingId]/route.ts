@@ -50,12 +50,12 @@ export async function DELETE(req: Request, { params }: { params: IParams }) {
 
     const newFavoritesIds = favoriteIds.filter((id) => id !== listingId);
 
-    const user = await prismaClient.user.update({
+    await prismaClient.user.update({
       where: { id: currentUser.id },
       data: { favoriteIds: newFavoritesIds }
     });
 
-    return NextResponse.json(user, { status: 200 });
+    return NextResponse.json('', { status: 204 });
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(error.message, { status: 400 });

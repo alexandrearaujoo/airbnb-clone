@@ -35,7 +35,9 @@ const RegisterModal = () => {
   const onSubmit = async (data: RegisterProps) => {
     try {
       await axios.post('/api/register', data);
+      toast.success('Success!');
       registerModal.onClose();
+      loginModal.onOpen();
       reset();
     } catch (error) {
       if (error instanceof AxiosError) {

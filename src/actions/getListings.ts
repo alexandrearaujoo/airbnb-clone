@@ -1,6 +1,6 @@
 import prismaClient from '@/libs/prismadb';
 
-export default async function getListings() {
+export const getListings = async () => {
   try {
     const listings = await prismaClient.listing.findMany({
       orderBy: { createdAt: 'desc' }
@@ -13,4 +13,4 @@ export default async function getListings() {
   } catch (error: any) {
     throw new Error(error);
   }
-}
+};
