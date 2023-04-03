@@ -5,6 +5,11 @@ import TripsClient from './TripsClient';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import { getReservations } from '@/actions/getReservations';
 
+export const metadata = {
+  title: 'Trips',
+  description: 'My trips'
+};
+
 export default async function TripsPage() {
   const currentUser = await getCurrentUser();
 

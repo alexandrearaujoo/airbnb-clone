@@ -8,23 +8,27 @@ interface IParams {
 
 export const getReservations = async (params: IParams) => {
   try {
-    const { authorId, listingId, userId } = params;
+    const { listingId, userId, authorId } = params;
 
     const query: any = {};
 
     if (listingId) {
       query.listingId = listingId;
     }
+
     if (userId) {
       query.userId = userId;
     }
+
     if (authorId) {
-      query.listingId = { userId: authorId };
+      query.listing = { userId: authorId };
     }
 
     const reservations = await prismaClient.reservation.findMany({
       where: query,
-      include: { listing: true },
+      include: {
+        listing: true
+      },
       orderBy: {
         createdAt: 'desc'
       }

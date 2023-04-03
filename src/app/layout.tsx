@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google';
 import LoginModal from '@/components/Modals/LoginModal';
 import RegisterModal from '@/components/Modals/RegisterModal';
 import RentModal from '@/components/Modals/RentModal';
+import SearchModal from '@/components/Modals/SearchModal';
 import Navbar from '@/components/Navbar/Navbar';
 
 import './globals.css';
@@ -32,6 +33,7 @@ export default async function RootLayout({
         <RentModal />
         <RegisterModal />
         <LoginModal />
+        <SearchModal />
         <Navbar currentUser={currentUser} />
         <div className="pb-20 pt-28">{children}</div>
       </body>

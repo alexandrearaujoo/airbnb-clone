@@ -5,6 +5,11 @@ import PropertiesClient from './PropertiesClient';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import { getListings } from '@/actions/getListings';
 
+export const metadata = {
+  title: 'Properties',
+  description: 'My properties'
+};
+
 export default async function PropertiesPage() {
   const currentUser = await getCurrentUser();
 

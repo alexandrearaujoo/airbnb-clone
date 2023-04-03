@@ -10,6 +10,11 @@ interface IParams {
   listingId?: string;
 }
 
+export async function generateMetadata({ params }: { params: IParams }) {
+  const listing = await getListingById({ params });
+  return { title: listing?.title };
+}
+
 export default async function ListingPage({ params }: { params: IParams }) {
   const listing = await getListingById({ params });
   const reservations = await getReservations(params);

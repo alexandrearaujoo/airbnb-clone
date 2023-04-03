@@ -7,14 +7,24 @@ const Logo = () => {
   const router = useRouter();
 
   return (
-    <Image
-      alt="Logo"
-      className="hidden md:block cursor-pointer"
-      height={100}
-      width={100}
-      src="/images/logo.png"
-      onClick={() => router.push('/')}
-    />
+    <>
+      <Image
+        alt="Logo"
+        className="hidden md:block cursor-pointer"
+        height={100}
+        width={100}
+        src="/images/logo.png"
+        onClick={() => router.push('/')}
+      />
+      <Image
+        alt="Logo"
+        className="block cursor-pointer md:hidden"
+        height={30}
+        width={30}
+        src="/images/airbnb-logo-mobile.png"
+        onClick={() => router.push('/')}
+      />
+    </>
   );
 };
 

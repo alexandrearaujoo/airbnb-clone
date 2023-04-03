@@ -5,6 +5,11 @@ import FavoritesClient from './FavoritesClient';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import { getFavorites } from '@/actions/getFavorites';
 
+export const metadata = {
+  title: 'Favorites',
+  description: 'My favorites places'
+};
+
 export default async function FavoritesPage() {
   const currentUser = await getCurrentUser();
   const favorites = await getFavorites();
