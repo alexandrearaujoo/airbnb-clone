@@ -8,6 +8,43 @@ body,
   height: 100%;
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #B8C0C2 #DFE9EB;
+}
+
+/* Chrome, Edge and Safari */
+html::-webkit-scrollbar {
+  width: 10px;
+  width: 10px;
+}
+html::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #DFE9EB;
+}
+
+html::-webkit-scrollbar-track:hover {
+  background-color: #B8C0C2;
+}
+
+html::-webkit-scrollbar-track:active {
+  background-color: #B8C0C2;
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #B8C0C2;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #585C5D;
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background-color: #484C4C;
+}
+
+
 .leaflet-bottom,
 .leaflet-control,
 .leaflet-pane,
