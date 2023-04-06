@@ -55,7 +55,7 @@ export async function DELETE(req: Request, { params }: { params: IParams }) {
       data: { favoriteIds: newFavoritesIds }
     });
 
-    return NextResponse.json('', { status: 204 });
+    return NextResponse.json('', { status: 200 });
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(error.message, { status: 400 });
